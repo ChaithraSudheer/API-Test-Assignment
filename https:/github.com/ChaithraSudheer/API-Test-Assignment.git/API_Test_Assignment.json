@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "15e17b81-e389-4a59-9147-26cfa22996d8",
+		"name": "API Test Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List of posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ce2f621-073c-46d2-9488-9b925e8d9d44",
+						"exec": [
+							"//test for status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//test for String\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"United States\");\r",
+							"});\r",
+							"\r",
+							"//Test for Response time\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"//Test for message\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "cec77e18-51ca-4d9a-b36f-7cd9501688fb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://api.zippopotam.us/us/98121"
+			},
+			"response": []
+		},
+		{
+			"name": "New user Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f99f1866-c411-49a5-9de8-d8df5bc98db2",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "580dc91c-056a-4bd9-b966-748904657fdc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"count\": 1246099,\r\n    \"name\": \"thomas\",\r\n    \"gender\": \"male\",\r\n    \"probability\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.genderize.io/?name=thomas",
+					"protocol": "https",
+					"host": [
+						"api",
+						"genderize",
+						"io"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "thomas"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register new User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "13a27cc9-7f97-4217-be39-337f4594ad5f",
+						"exec": [
+							"//test for status code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//test for registeration \r",
+							"pm.test(\"New User Registered Successfully\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"//Status name\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"//Test for response time\r",
+							"pm.test(\"Response time is less than 550ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(550);\r",
+							"});\r",
+							"\r",
+							"//to get response in json\r",
+							"var v1=pm.response.json();\r",
+							"console.log(v1);\r",
+							"\r",
+							"//test for json response\r",
+							"pm.test(\"Test for the json data first_name=Mayur\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.first_name).to.eql(\"Mayur\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "aa7c381a-e9c9-48d4-9343-b67d12548101",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mayur34@gmail.com\",\r\n    \"first_name\":\"Mayur\",\r\n    \"last_name\":\"Patil\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "96d726ba-4d4f-41c2-98aa-934de382782e",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "9ab60068-4f6d-41fd-b1e4-e1aedc7bc743",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?Maker_ID=12858",
+					"protocol": "https",
+					"host": [
+						"vpic",
+						"nhtsa",
+						"dot",
+						"gov"
+					],
+					"path": [
+						"api",
+						"vehicles",
+						"getallmakes"
+					],
+					"query": [
+						{
+							"key": "Maker_ID",
+							"value": "12858"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c13c9cf3-e4a0-462b-bc57-da9171fbd61c",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "4d047940-1699-4424-8085-7098c8606609",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://reqres.in/api/users/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Login functionality",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b4725e6-edb5-4c57-b8fb-7f305a88217e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"QpwL5tke4Pnpja7X4\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Header Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Login is successful\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200); \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "31d2b588-a58d-4392-9620-8c65567158c5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "974a77fc-8ed6-45a8-954e-c14b36a6961c",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST Created\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Header Content-Length is present in response\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Body matches string id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "1fcd11a0-acf3-4100-a46d-088aa2c760a9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ladan\",\r\n    \"job\": \"Developer\",\r\n    \"experience\":\"6-7 years\",\r\n    \"location\":\"Hyderabad\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users/2"
+			},
+			"response": []
+		}
+	]
+}
